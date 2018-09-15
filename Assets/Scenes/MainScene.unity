@@ -149,6 +149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e06e555bcd94354587507b34c45ca4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PreSetHeight: 19.2
+  PreSetWidth: 10.8
+  AspectRatio: 0
+  ScreenHeight: 0
+  ScreenWidth: 0
+  CameraWidth: 0
+  CameraHeight: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -287,7 +294,7 @@ GameObject:
   - component: {fileID: 1054705960}
   - component: {fileID: 1054705959}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

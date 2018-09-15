@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestCamera : MonoBehaviour {
+public class CameraAdaptation : MonoBehaviour {
 	public float PreSetHeight = 19.2f;
 	public float PreSetWidth = 10.8f;
 	//宽高比
