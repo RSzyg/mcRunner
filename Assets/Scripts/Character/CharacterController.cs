@@ -20,7 +20,7 @@ public class CharacterController : MonoBehaviour {
 	void Update () {
 		if (!jumping && Input.GetMouseButtonDown(0)) {
 			jumping = true;
-			rb.velocity = new Vector2(rb.velocity.x, 10.0f);
+			rb.velocity = new Vector2(rb.velocity.x, 12.0f);
 		}
 	}
 
