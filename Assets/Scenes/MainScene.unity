@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d69c63c11a776f458d7c51de111778d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 2
+  scrollSpeed: 5
   timeInterval: 0.016
   Floor0: {fileID: 4387561019505828, guid: 3fdbf5a703057eb4cb598dcefec1f0e7, type: 2}
   Floor1: {fileID: 4454443433114920, guid: 8a28bb4b848300b4e9b4a39537c76dc6, type: 2}
