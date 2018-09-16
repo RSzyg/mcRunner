@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterController : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 	public float energy;
 	public bool jumping;
 	public Text energyDisplay;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloorCollision : MonoBehaviour {
 	public GameObject player;
-	public CharacterController playerScript;
+	public PlayerController playerScript;
 
 	// Use this for initialization
 	void Start () {
