@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MainController : MonoBehaviour {
 	public bool gameRunning = false;
-	public float scrollSpeed = 2f;
+	public float scrollSpeed = 3f;
 	public float timeInterval = 0.016f;
 	public Button startButton;
 	public GameObject Player;
@@ -48,6 +48,9 @@ public class MainController : MonoBehaviour {
 	}
 
 	void Game() {
+		if (scrollSpeed <= 9.5f) {
+			scrollSpeed += 0.003f;
+		}
         if (FirstFloor.transform.position.x <= - width + 0.01) {
 			Destroy(FirstFloor);
 			int rndNum = Random.Range(0, 3);
