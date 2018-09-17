@@ -8,37 +8,35 @@ public class FloorController : MonoBehaviour {
 	public GameObject[] Floor = new GameObject[3];
 
 	private float width;
+	private Vector3 floorStartPos;
 	private GameObject FirstFloor;
 	private GameObject SecondFloor;
 	
 	// Use this for initialization
 	void Awake () {
+		floorStartPos = Floor[0].transform.position;
+		width = Floor[0].transform.localScale.x;
+
 		FirstFloor = Instantiate(Floor[0], new Vector3(0, -4, 0), Quaternion.identity);
-		width = FirstFloor.transform.GetComponent<Renderer>().bounds.extents.x;
 
 		int rndNum = Random.Range(0, 3);
-		SecondFloor = Instantiate(Floor[rndNum], new Vector3(15.99f, -4, 0), Quaternion.identity);
+		SecondFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (FirstFloor.transform.position.x > - width * 2 + 0.01) {
-            FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
-        }
-        else {
+        if (FirstFloor.transform.position.x <= - width + 0.01) {
 			Destroy(FirstFloor);
 			int rndNum = Random.Range(0, 3);
-			FirstFloor = Instantiate(Floor[rndNum], new Vector3(15.99f, -4, 0), Quaternion.identity);
-			FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
+			FirstFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
         }
-		if (SecondFloor.transform.position.x > - width * 2 + 0.01) {
-            SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
-        }
-        else {
+		FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
+
+		if (SecondFloor.transform.position.x <= - width + 0.01) {
 			Destroy(SecondFloor);
 			int rndNum = Random.Range(0, 3);
-			SecondFloor = Instantiate(Floor[rndNum], new Vector3(15.99f, -4, 0), Quaternion.identity);
-			SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
+			SecondFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
         }
+		SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 	}
 }
