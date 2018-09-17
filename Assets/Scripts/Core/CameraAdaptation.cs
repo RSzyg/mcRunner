@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraAdaptation : MonoBehaviour {
-	public float PreSetHeight = 19.2f;
-	public float PreSetWidth = 10.8f;
+	public float PreSetHeight = 9.6f;
+	public float PreSetWidth = 5.4f;
 	//宽高比
 	public float AspectRatio;
 	//屏幕 高度

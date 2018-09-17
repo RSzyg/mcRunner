@@ -6,14 +6,12 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 	public float energy;
 	public bool jumping;
-	public Text energyDisplay;
 	public Rigidbody2D rb;
 
 	// Use this for initialization
 	void Start () {
 		energy = 60.0f;
 		jumping = true;
-		energyDisplay.text = "Energy: " + energy;
 	}
 	
 	// Update is called once per frame
@@ -30,7 +28,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void EnergyController(int val) {
 		energy += val;
-		energyDisplay.text = "Energy: " + energy;
 		DeadthJudge();
 	}
 
