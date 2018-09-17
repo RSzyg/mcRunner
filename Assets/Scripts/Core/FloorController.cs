@@ -6,6 +6,7 @@ public class FloorController : MonoBehaviour {
 	public float scrollSpeed = 2f;
 	public float timeInterval = 0.016f;
 	public GameObject[] Floor = new GameObject[3];
+	public GameObject[] Obstacel = new GameObject[2];
 
 	private float width;
 	private Vector3 floorStartPos;
@@ -29,6 +30,8 @@ public class FloorController : MonoBehaviour {
 			Destroy(FirstFloor);
 			int rndNum = Random.Range(0, 3);
 			FirstFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
+
+			addObstacle(FirstFloor);
         }
 		FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 
@@ -36,7 +39,21 @@ public class FloorController : MonoBehaviour {
 			Destroy(SecondFloor);
 			int rndNum = Random.Range(0, 3);
 			SecondFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
+
+			addObstacle(SecondFloor);
         }
 		SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
+	}
+
+	void addObstacle(GameObject parentObj) {
+		GameObject obj = Instantiate(Obstacel[0], new Vector3(0, 0, 0), Quaternion.identity);
+
+		obj.transform.parent = parentObj.transform;
+
+		float posX = 0;
+		float posY = obj.transform.localScale.y / 2;
+		float posZ = 0;
+
+		obj.transform.localPosition = new Vector3(posX, posY, posZ);
 	}
 }

@@ -396,6 +396,9 @@ MonoBehaviour:
   - {fileID: 1958210645273458, guid: 3fdbf5a703057eb4cb598dcefec1f0e7, type: 2}
   - {fileID: 1852765505338200, guid: 8a28bb4b848300b4e9b4a39537c76dc6, type: 2}
   - {fileID: 1360669376558708, guid: af553282b5f83b14989b9445b0704a2d, type: 2}
+  Obstacel:
+  - {fileID: 1372695808710640, guid: cfbac0e01b991634bac63e110bb3d9f8, type: 2}
+  - {fileID: 1144035784212154, guid: 515e087db9765824185d66224581b1c1, type: 2}
 --- !u!1 &672958224
 GameObject:
   m_ObjectHideFlags: 0
