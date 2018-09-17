@@ -5,27 +5,19 @@ using UnityEngine;
 public class FloorController : MonoBehaviour {
 	public float scrollSpeed = 2f;
 	public float timeInterval = 0.016f;
-	public GameObject Floor0;
-	public GameObject Floor1;
-	public GameObject Floor2;
+	public GameObject[] Floor = new GameObject[3];
 
 	private float width;
 	private GameObject FirstFloor;
 	private GameObject SecondFloor;
-	private double random;
 	
 	// Use this for initialization
 	void Awake () {
-		FirstFloor = Instantiate(Floor0, new Vector3(0, -4, 0), Quaternion.identity).gameObject;
+		FirstFloor = Instantiate(Floor[0], new Vector3(0, -4, 0), Quaternion.identity);
 		width = FirstFloor.transform.GetComponent<Renderer>().bounds.extents.x;
-		random = 3 * Random.value;
-		if (random < 1) {
-			SecondFloor = Instantiate(Floor0, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-		} else if (random < 2) {
-			SecondFloor = Instantiate(Floor1, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-		} else {
-			SecondFloor = Instantiate(Floor2, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-		}
+
+		int rndNum = Random.Range(0, 3);
+		SecondFloor = Instantiate(Floor[rndNum], new Vector3(15.99f, -4, 0), Quaternion.identity);
 	}
 	
 	// Update is called once per frame
@@ -35,14 +27,8 @@ public class FloorController : MonoBehaviour {
         }
         else {
 			Destroy(FirstFloor);
-            random = 3 * Random.value;
-			if (random < 1) {
-				FirstFloor = Instantiate(Floor0, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-			} else if (random < 2) {
-				FirstFloor = Instantiate(Floor1, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-			} else {
-				FirstFloor = Instantiate(Floor2, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-			}
+			int rndNum = Random.Range(0, 3);
+			FirstFloor = Instantiate(Floor[rndNum], new Vector3(15.99f, -4, 0), Quaternion.identity);
 			FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
         }
 		if (SecondFloor.transform.position.x > - width * 2 + 0.01) {
@@ -50,14 +36,8 @@ public class FloorController : MonoBehaviour {
         }
         else {
 			Destroy(SecondFloor);
-            random = 3 * Random.value;
-			if (random < 1) {
-				SecondFloor = Instantiate(Floor0, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-			} else if (random < 2) {
-				SecondFloor = Instantiate(Floor1, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-			} else {
-				SecondFloor = Instantiate(Floor2, new Vector3(15.99f, -4, 0), Quaternion.identity).gameObject;
-			}
+			int rndNum = Random.Range(0, 3);
+			SecondFloor = Instantiate(Floor[rndNum], new Vector3(15.99f, -4, 0), Quaternion.identity);
 			SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
         }
 	}

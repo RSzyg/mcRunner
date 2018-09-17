@@ -392,9 +392,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 5
   timeInterval: 0.016
-  Floor0: {fileID: 1958210645273458, guid: 3fdbf5a703057eb4cb598dcefec1f0e7, type: 2}
-  Floor1: {fileID: 1852765505338200, guid: 8a28bb4b848300b4e9b4a39537c76dc6, type: 2}
-  Floor2: {fileID: 1360669376558708, guid: af553282b5f83b14989b9445b0704a2d, type: 2}
+  Floor:
+  - {fileID: 1958210645273458, guid: 3fdbf5a703057eb4cb598dcefec1f0e7, type: 2}
+  - {fileID: 1852765505338200, guid: 8a28bb4b848300b4e9b4a39537c76dc6, type: 2}
+  - {fileID: 1360669376558708, guid: af553282b5f83b14989b9445b0704a2d, type: 2}
 --- !u!1 &672958224
 GameObject:
   m_ObjectHideFlags: 0
