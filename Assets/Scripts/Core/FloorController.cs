@@ -5,9 +5,9 @@ using UnityEngine;
 public class FloorController : MonoBehaviour {
 	public float scrollSpeed = 2f;
 	public float timeInterval = 0.016f;
-	public Transform Floor0;
-	public Transform Floor1;
-	public Transform Floor2;
+	public GameObject Floor0;
+	public GameObject Floor1;
+	public GameObject Floor2;
 
 	private float width;
 	private GameObject FirstFloor;
