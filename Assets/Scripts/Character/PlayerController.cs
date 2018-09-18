@@ -34,13 +34,17 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log("dead");
 			isAlive = false;
 		}
+
+		if (other.gameObject.tag == "Food") {
+			EnergyController(other.gameObject.GetComponent<FoodBasicAttr> ().energy);
+		}
 	}
 
 	public void StopJumping() {
 		jumping = false;
 	}
 
-	public void EnergyController(int val) {
+	public void EnergyController(float val) {
 		energy += val;
 		DeadthJudge();
 	}

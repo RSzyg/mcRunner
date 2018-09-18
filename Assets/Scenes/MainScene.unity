@@ -400,9 +400,14 @@ MonoBehaviour:
   - {fileID: 1958210645273458, guid: 3fdbf5a703057eb4cb598dcefec1f0e7, type: 2}
   - {fileID: 1852765505338200, guid: 8a28bb4b848300b4e9b4a39537c76dc6, type: 2}
   - {fileID: 1360669376558708, guid: af553282b5f83b14989b9445b0704a2d, type: 2}
-  Obstacel:
+  Obstacle:
   - {fileID: 1372695808710640, guid: cfbac0e01b991634bac63e110bb3d9f8, type: 2}
   - {fileID: 1144035784212154, guid: 515e087db9765824185d66224581b1c1, type: 2}
+  - {fileID: 1232873842224730, guid: abe0b43b638a1f648bacfcd69a141407, type: 2}
+  Food:
+  - {fileID: 1449758776762528, guid: 8c23a7807635aa544a8b676ee45421ea, type: 2}
+  - {fileID: 1762198194486584, guid: 93984000fdf46d345bd93757c2c8089b, type: 2}
+  - {fileID: 1255078374927226, guid: 0c47ca18b4d01e94c8bba59cff726008, type: 2}
 --- !u!1 &672958224
 GameObject:
   m_ObjectHideFlags: 0
