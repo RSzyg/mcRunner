@@ -58,7 +58,7 @@ public class MainController : MonoBehaviour {
 			if (scrollSpeed <= 9.5f) {
 				scrollSpeed += 0.003f;
 			}
-			if (FirstFloor.transform.position.x <= - width + 0.01) {
+			if (FirstFloor.transform.position.x <= -width * 3 / 4) {
 				Destroy(FirstFloor);
 				int rndNum = Random.Range(0, 3);
 				FirstFloor = Instantiate(Floor[rndNum], SecondFloor.transform.position + Vector3.right * width, Quaternion.identity);
@@ -66,7 +66,7 @@ public class MainController : MonoBehaviour {
 				AddObstacle(FirstFloor);
 			}
 
-			if (SecondFloor.transform.position.x <= - width + 0.01) {
+			if (SecondFloor.transform.position.x <= -width * 3 / 4) {
 				Destroy(SecondFloor);
 				int rndNum = Random.Range(0, 3);
 				SecondFloor = Instantiate(Floor[rndNum], FirstFloor.transform.position + Vector3.right * width, Quaternion.identity);
