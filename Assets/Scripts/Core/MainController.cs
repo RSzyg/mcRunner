@@ -16,6 +16,7 @@ public class MainController : MonoBehaviour {
 	private Vector3 floorStartPos;
 	private GameObject FirstFloor;
 	private GameObject SecondFloor;
+	private GameObject player;
 	
 	void Start()
 	{
@@ -42,33 +43,39 @@ public class MainController : MonoBehaviour {
 		float playerPosX = -3;
 		float playerPosY = Floor[0].transform.position.y + Player.transform.localScale.y / 2;
 		float playerPosZ = 0;
-		Instantiate(Player, new Vector3(playerPosX, playerPosY, playerPosZ), Quaternion.identity);
+		player = Instantiate(
+			Player,
+			new Vector3(playerPosX, playerPosY, playerPosZ),
+			Quaternion.identity
+		);
 
 		int rndNum = Random.Range(0, 3);
 		SecondFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
 	}
 
 	void Game() {
-		if (scrollSpeed <= 9.5f) {
-			scrollSpeed += 0.003f;
+		if (player.GetComponent<PlayerController> ().isAlive) {
+			if (scrollSpeed <= 9.5f) {
+				scrollSpeed += 0.003f;
+			}
+			if (FirstFloor.transform.position.x <= - width + 0.01) {
+				Destroy(FirstFloor);
+				int rndNum = Random.Range(0, 3);
+				FirstFloor = Instantiate(Floor[rndNum], SecondFloor.transform.position + Vector3.right * width, Quaternion.identity);
+
+				AddObstacle(FirstFloor);
+			}
+
+			if (SecondFloor.transform.position.x <= - width + 0.01) {
+				Destroy(SecondFloor);
+				int rndNum = Random.Range(0, 3);
+				SecondFloor = Instantiate(Floor[rndNum], FirstFloor.transform.position + Vector3.right * width, Quaternion.identity);
+
+				AddObstacle(SecondFloor);
+			}
+			FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
+			SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 		}
-        if (FirstFloor.transform.position.x <= - width + 0.01) {
-			Destroy(FirstFloor);
-			int rndNum = Random.Range(0, 3);
-			FirstFloor = Instantiate(Floor[rndNum], SecondFloor.transform.position + Vector3.right * width, Quaternion.identity);
-
-			AddObstacle(FirstFloor);
-        }
-
-		if (SecondFloor.transform.position.x <= - width + 0.01) {
-			Destroy(SecondFloor);
-			int rndNum = Random.Range(0, 3);
-			SecondFloor = Instantiate(Floor[rndNum], FirstFloor.transform.position + Vector3.right * width, Quaternion.identity);
-
-			AddObstacle(SecondFloor);
-        }
-		FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
-		SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 	}
 
 	void AddObstacle(GameObject parentObj) {

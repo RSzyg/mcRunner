@@ -4,19 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
+	public bool isAlive;
 	public float energy;
-	public bool jumping;
 	public Rigidbody2D rb;
+	private bool jumping;
 
 	// Use this for initialization
 	void Start () {
+		isAlive = true;
 		energy = 60.0f;
 		jumping = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!jumping && Input.GetMouseButtonDown(0)) {
+		if (isAlive && !jumping && Input.GetMouseButtonDown(0)) {
 			jumping = true;
 			rb.velocity = new Vector2(rb.velocity.x, 12.0f);
 		}
@@ -26,6 +28,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Floor") {
 			StopJumping();
+		}
+
+		if (other.gameObject.tag == "PrimaryObstacle") {
+			Debug.Log("dead");
+			isAlive = false;
 		}
 	}
 
@@ -41,6 +48,7 @@ public class PlayerController : MonoBehaviour {
 	public void DeadthJudge() {
 		if (energy <= 0) {
 			Debug.Log("dead");
+			isAlive = false;
 		}
 	}
 }
