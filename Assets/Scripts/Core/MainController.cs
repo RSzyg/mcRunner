@@ -10,7 +10,8 @@ public class MainController : MonoBehaviour {
 	public Button startButton;
 	public GameObject Player;
 	public GameObject[] Floor = new GameObject[3];
-	public GameObject[] Obstacel = new GameObject[2];
+	public GameObject[] Obstacle = new GameObject[3];
+	public GameObject[] Food = new GameObject[3];
 
 	private float width;
 	private Vector3 floorStartPos;
@@ -63,7 +64,7 @@ public class MainController : MonoBehaviour {
 				int rndNum = Random.Range(0, 3);
 				FirstFloor = Instantiate(Floor[rndNum], SecondFloor.transform.position + Vector3.right * width, Quaternion.identity);
 
-				AddObstacle(FirstFloor);
+				AddObject(FirstFloor);
 			}
 
 			if (SecondFloor.transform.position.x <= -width * 3 / 4) {
@@ -71,19 +72,36 @@ public class MainController : MonoBehaviour {
 				int rndNum = Random.Range(0, 3);
 				SecondFloor = Instantiate(Floor[rndNum], FirstFloor.transform.position + Vector3.right * width, Quaternion.identity);
 
-				AddObstacle(SecondFloor);
+				AddObject(SecondFloor);
 			}
 			FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 			SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 		}
 	}
 
-	void AddObstacle(GameObject parentObj) {
-		GameObject obj = Instantiate(Obstacel[0], new Vector3(0, 0, 0), Quaternion.identity);
+	void AddObject(GameObject parentObj) {
+		int type = Random.Range(0, 2);
+		int rndNum = 0;
+		GameObject tamplate = Obstacle[0];
+		switch (type)
+		{
+			case 0:
+				rndNum = Random.Range(0, Obstacle.Length);
+				tamplate = Obstacle[rndNum];
+				break;
+			case 1:
+				rndNum = Random.Range(0, Food.Length);
+				tamplate = Food[rndNum];
+				break;
+			default:
+				break;
+		}
+		GameObject obj = Instantiate(tamplate);
 
 		obj.transform.parent = parentObj.transform;
 
-		float posX = 0;
+		float initPosX = -width / 2 + 0.5f;
+		float posX =  Random.Range(initPosX, initPosX + width * 3 / 4) * obj.transform.localScale.x;
 		float posY = obj.transform.localScale.y / 2;
 		float posZ = 0;
 
