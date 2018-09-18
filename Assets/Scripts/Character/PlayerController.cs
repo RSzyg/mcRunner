@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 		if (isAlive && !jumping && Input.GetMouseButtonDown(0)) {
 			jumping = true;
 			rb.velocity = new Vector2(rb.velocity.x, 12.0f);
+            energy -= 0.1f;
 		}
 	}
 
