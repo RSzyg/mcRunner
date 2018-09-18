@@ -35,6 +35,7 @@ public class MainController : MonoBehaviour {
 
 		floorStartPos = Floor[0].transform.position;
 		width = Floor[0].transform.localScale.x;
+		Debug.Log(width);
 
 		FirstFloor = Instantiate(Floor[0], new Vector3(0, -4, 0), Quaternion.identity);
 
@@ -54,19 +55,19 @@ public class MainController : MonoBehaviour {
         if (FirstFloor.transform.position.x <= - width + 0.01) {
 			Destroy(FirstFloor);
 			int rndNum = Random.Range(0, 3);
-			FirstFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
+			FirstFloor = Instantiate(Floor[rndNum], SecondFloor.transform.position + Vector3.right * width, Quaternion.identity);
 
 			AddObstacle(FirstFloor);
         }
-		FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 
 		if (SecondFloor.transform.position.x <= - width + 0.01) {
 			Destroy(SecondFloor);
 			int rndNum = Random.Range(0, 3);
-			SecondFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
+			SecondFloor = Instantiate(Floor[rndNum], FirstFloor.transform.position + Vector3.right * width, Quaternion.identity);
 
 			AddObstacle(SecondFloor);
         }
+		FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 		SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 	}
 

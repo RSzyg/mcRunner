@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameRunning: 0
-  scrollSpeed: 5
+  scrollSpeed: 3
   timeInterval: 0.016
   startButton: {fileID: 974621027}
   Player: {fileID: 1056170936468272, guid: 42551fcbfc7408f4899f92e86d178740, type: 2}
