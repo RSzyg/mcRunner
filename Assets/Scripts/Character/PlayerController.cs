@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 	public bool isAlive;
 	public float energy;
 	public Rigidbody2D rb;
-	private bool jumping;
+	public bool jumping;
 
 	// Use this for initialization
 	void Start () {
@@ -18,10 +18,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isAlive && !jumping && Input.GetMouseButtonDown(0)) {
-			jumping = true;
-			rb.velocity = new Vector2(rb.velocity.x, 12.0f);
-		}
+
 	}
 
 	private void OnCollisionEnter2D(Collision2D other)

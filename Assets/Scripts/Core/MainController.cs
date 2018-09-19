@@ -7,7 +7,7 @@ public class MainController : MonoBehaviour {
 	public bool gameRunning = false;
 	public float scrollSpeed = 3f;
 	public float timeInterval = 0.016f;
-	public Button startButton;
+	public Button PauseButton;
 	public GameObject Player;
 	public GameObject[] Floor = new GameObject[3];
 	public GameObject[] Obstacle = new GameObject[3];
@@ -21,11 +21,23 @@ public class MainController : MonoBehaviour {
 	
 	void Start()
 	{
-		startButton.onClick.AddListener(StartGame);
+		PauseButton.onClick.AddListener(PauseGame);
+		StartGame();
 	}
 
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetMouseButtonDown(0)) {
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			Vector2 mousePos2D = new Vector2 (mousePos.x , mousePos.y);
+			RaycastHit2D hit = Physics2D.Raycast (mousePos2D , Vector2.zero);
+			if (hit.collider != null) {
+				Debug.Log(hit.collider.gameObject.name);
+			} else if (player.GetComponent<PlayerController> ().isAlive && !player.GetComponent<PlayerController> ().jumping) {
+				player.GetComponent<PlayerController> ().jumping = true;
+				player.GetComponent<PlayerController> ().rb.velocity = new Vector2(player.GetComponent<PlayerController> ().rb.velocity.x, 12.0f);
+			}
+		}
 		if (gameRunning) {
 			Game();
 		}
@@ -34,7 +46,6 @@ public class MainController : MonoBehaviour {
 	void StartGame() {
 		scrollSpeed = 5.0f;
 
-		startButton.gameObject.SetActive(false);
 		gameRunning = true;
 
 		floorStartPos = Floor[0].transform.position;
@@ -78,6 +89,10 @@ public class MainController : MonoBehaviour {
 			FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 			SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 		}
+	}
+
+	void PauseGame() {
+		gameRunning = false;
 	}
 
 	void AddObject(GameObject parentObj) {
