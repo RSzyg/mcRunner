@@ -32,6 +32,8 @@ public class MainController : MonoBehaviour {
 	}
 
 	void StartGame() {
+		scrollSpeed = 5.0f;
+
 		startButton.gameObject.SetActive(false);
 		gameRunning = true;
 
@@ -56,9 +58,8 @@ public class MainController : MonoBehaviour {
 
 	void Game() {
 		if (player.GetComponent<PlayerController> ().isAlive) {
-			if (scrollSpeed <= 9.5f) {
-				scrollSpeed += 0.003f;
-			}
+			scrollSpeed += 0.002f;
+
 			if (FirstFloor.transform.position.x <= -width * 3 / 4) {
 				Destroy(FirstFloor);
 				int rndNum = Random.Range(0, 3);
