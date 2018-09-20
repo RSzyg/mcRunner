@@ -7,11 +7,12 @@ public class MainController : MonoBehaviour {
 	public bool gameRunning = false;
 	public float scrollSpeed = 3f;
 	public float timeInterval = 0.016f;
-	public Button startButton;
+	public Button PauseButton;
 	public GameObject Player;
 	public GameObject[] Floor = new GameObject[3];
 	public GameObject[] Obstacle = new GameObject[3];
 	public GameObject[] Food = new GameObject[3];
+    public Text DisplayEnergy;
 
 	private float width;
 	private Vector3 floorStartPos;
@@ -21,18 +22,31 @@ public class MainController : MonoBehaviour {
 	
 	void Start()
 	{
-		startButton.onClick.AddListener(StartGame);
+		PauseButton.onClick.AddListener(PauseGame);
+		StartGame();
 	}
 
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetMouseButtonDown(0)) {
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			Vector2 mousePos2D = new Vector2 (mousePos.x , mousePos.y);
+			RaycastHit2D hit = Physics2D.Raycast (mousePos2D , Vector2.zero);
+			if (hit.collider != null) {
+				Debug.Log(hit.collider.gameObject.name);
+			} else if (player.GetComponent<PlayerController> ().isAlive && !player.GetComponent<PlayerController> ().jumping) {
+				player.GetComponent<PlayerController> ().jumping = true;
+				player.GetComponent<PlayerController> ().rb.velocity = new Vector2(player.GetComponent<PlayerController> ().rb.velocity.x, 12.0f);
+			}
+		}
 		if (gameRunning) {
 			Game();
 		}
 	}
 
 	void StartGame() {
-		startButton.gameObject.SetActive(false);
+		scrollSpeed = 5.0f;
+
 		gameRunning = true;
 
 		floorStartPos = Floor[0].transform.position;
@@ -56,10 +70,18 @@ public class MainController : MonoBehaviour {
 
 	void Game() {
 		if (player.GetComponent<PlayerController> ().isAlive) {
-			if (scrollSpeed <= 9.5f) {
-				scrollSpeed += 0.003f;
-			}
-			if (FirstFloor.transform.position.x <= -width * 3 / 4) {
+			scrollSpeed += 0.002f;
+            player.GetComponent<PlayerController>().energy -= 0.02f;
+        
+            if (player.GetComponent<PlayerController>().energy < 20)
+            {
+                DisplayEnergy.text = "<color=red>" + (int)player.GetComponent<PlayerController>().energy + "</color>";
+            } else
+            {
+                DisplayEnergy.text = "<color=white>" + (int)player.GetComponent<PlayerController>().energy + "</color>";
+            }
+
+            if (FirstFloor.transform.position.x <= -width * 3 / 4) {
 				Destroy(FirstFloor);
 				int rndNum = Random.Range(0, 3);
 				FirstFloor = Instantiate(Floor[rndNum], SecondFloor.transform.position + Vector3.right * width, Quaternion.identity);
@@ -78,6 +100,11 @@ public class MainController : MonoBehaviour {
 			SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 		}
 	}
+
+    void PauseGame()
+    {
+        gameRunning = false;
+    }
 
 	void AddObject(GameObject parentObj) {
 		int type = Random.Range(0, 2);

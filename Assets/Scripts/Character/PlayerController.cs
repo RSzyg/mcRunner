@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
 	public bool isAlive;
 	public float energy;
 	public Rigidbody2D rb;
-	private bool jumping;
+	public bool jumping;
 
 	// Use this for initialization
 	void Start () {
@@ -18,11 +18,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isAlive && !jumping && Input.GetMouseButtonDown(0)) {
-			jumping = true;
-			rb.velocity = new Vector2(rb.velocity.x, 12.0f);
-            energy -= 0.1f;
-		}
+        DeadthJudge();
 	}
 
 	private void OnCollisionEnter2D(Collision2D other)
@@ -32,22 +28,33 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (other.gameObject.tag == "PrimaryObstacle") {
-			Debug.Log("dead");
 			isAlive = false;
-		}
-
-		if (other.gameObject.tag == "Food") {
-			EnergyController(other.gameObject.GetComponent<FoodBasicAttr> ().energy);
 		}
 	}
 
-	public void StopJumping() {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.gameObject.tag == "Food")
+        {
+            EnergyController(other.gameObject.GetComponent<FoodBasicAttr>().energy);
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "BreakableObstacle")
+        {
+            Debug.Log("IsWorking");
+            EnergyController(-10.0f);
+            Destroy(other.gameObject);
+        }
+    }
+
+    public void StopJumping() {
 		jumping = false;
 	}
 
 	public void EnergyController(float val) {
 		energy += val;
-		DeadthJudge();
 	}
 
 	public void DeadthJudge() {

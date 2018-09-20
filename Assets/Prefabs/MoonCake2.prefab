@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4949937281483522}
   - component: {fileID: 212353825775724064}
   - component: {fileID: 61567307596288286}
+  - component: {fileID: 114132204688722818}
   m_Layer: 0
   m_Name: MoonCake2
   m_TagString: Food
@@ -66,6 +67,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &114132204688722818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762198194486584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20854e6c4a207e9499fcb2b30613cb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energy: 6
 --- !u!212 &212353825775724064
 SpriteRenderer:
   m_ObjectHideFlags: 1
