@@ -8,6 +8,8 @@ public class MainController : MonoBehaviour {
 	public float scrollSpeed = 3f;
 	public float timeInterval = 0.016f;
 	public Button PauseButton;
+	public Button ContinueButton;
+	public GameObject PauseUI;
 	public GameObject Player;
 	public GameObject[] Floor = new GameObject[3];
 	public GameObject[] Obstacle = new GameObject[3];
@@ -23,6 +25,8 @@ public class MainController : MonoBehaviour {
 	void Start()
 	{
 		PauseButton.onClick.AddListener(PauseGame);
+		ContinueButton.onClick.AddListener(ContinueGame);
+		PauseUI.SetActive(false);
 		StartGame();
 	}
 
@@ -103,8 +107,14 @@ public class MainController : MonoBehaviour {
 
     void PauseGame()
     {
+		PauseUI.SetActive(true);
         gameRunning = false;
     }
+
+	void ContinueGame() {
+		PauseUI.SetActive(false);
+		gameRunning = true;
+	}
 
 	void AddObject(GameObject parentObj) {
 		int type = Random.Range(0, 2);
