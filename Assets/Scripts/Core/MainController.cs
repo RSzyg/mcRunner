@@ -7,8 +7,6 @@ public class MainController : MonoBehaviour {
 	public bool gameRunning = false;
 	public float scrollSpeed = 3f;
 	public float timeInterval = 0.016f;
-	public Button PauseButton;
-	public Button ContinueButton;
 	public GameObject PauseUI;
 	public GameObject Player;
 	public GameObject[] Floor = new GameObject[3];
@@ -65,6 +63,9 @@ public class MainController : MonoBehaviour {
 					ContinueGame();
 				}
 			} else if (_playerController.isAlive && !_playerController.jumping) {
+				if (_player.GetComponent<Rigidbody2D> ().IsSleeping()) {
+					return;
+				}
 				_playerController.jumping = true;
 				_playerController.rb.velocity = new Vector2(_playerController.rb.velocity.x, 12.0f);
 			}
@@ -113,11 +114,13 @@ public class MainController : MonoBehaviour {
 
     void PauseGame()
     {
+		_player.GetComponent<Rigidbody2D> ().Sleep();
 		PauseUI.SetActive(true);
         gameRunning = false;
     }
 
 	void ContinueGame() {
+		_player.GetComponent<Rigidbody2D> ().WakeUp();
 		PauseUI.SetActive(false);
 		gameRunning = true;
 	}
