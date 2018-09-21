@@ -84,23 +84,29 @@ public class MainController : MonoBehaviour {
             }
 
             if (_firstFloor.transform.position.x <= -width * 3 / 4) {
-				Destroy(_firstFloor);
+				if (_firstFloor != null) {
+					Destroy(_firstFloor);
+				}
 				int rndNum = Random.Range(0, 3);
 				_firstFloor = Instantiate(
 					Floor[rndNum],
 					_secondFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
+				Debug.Log(_firstFloor);
 			}
 
 			if (_secondFloor.transform.position.x <= -width * 3 / 4) {
-				Destroy(_secondFloor);
+				if (_secondFloor != null) {
+					Destroy(_secondFloor);
+				}
 				int rndNum = Random.Range(0, 3);
 				_secondFloor = Instantiate(
 					Floor[rndNum],
 					_firstFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
+				Debug.Log(_secondFloor);
 			}
 			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);

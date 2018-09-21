@@ -38,8 +38,8 @@ public class FloorController : MonoBehaviour {
 		// }
 	}
 
-	private void OnBecameInvisible()
-	{
-		Destroy(gameObject);
-	}
+	// private void OnBecameInvisible()
+	// {
+	// 	Destroy(gameObject);
+	// }
 }
