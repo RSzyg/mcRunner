@@ -12,21 +12,26 @@ public class FloorController : MonoBehaviour {
 		float posX = 0;
 
 		// for (int i = 0; i < 2; i++) {
-			int type = Random.Range(0, 2);
+			int type = Random.Range(0, 6);
 			int rndNum = 0;
 			GameObject tamplate = Obstacle[0];
-			switch (type)
-			{
-				case 0:
+
+			if (PlayerController.energy < 20) {
+				if (type == 0 || type == 2) {
 					rndNum = Random.Range(0, Obstacle.Length);
 					tamplate = Obstacle[rndNum];
-					break;
-				case 1:
+				} else {
 					rndNum = Random.Range(0, Food.Length);
 					tamplate = Food[rndNum];
-					break;
-				default:
-					break;
+				}
+			} else {
+				if (type == 0 || type == 2 || type == 4) {
+					rndNum = Random.Range(0, Obstacle.Length);
+					tamplate = Obstacle[rndNum];
+				} else {
+					rndNum = Random.Range(0, Food.Length);
+					tamplate = Food[rndNum];
+				}
 			}
 			GameObject obj = Instantiate(tamplate);
 

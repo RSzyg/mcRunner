@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 	public bool isAlive;
-	public float energy;
+	public static float energy;
 	public Rigidbody2D rb;
 	public bool jumping;
 

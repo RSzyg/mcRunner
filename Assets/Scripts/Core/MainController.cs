@@ -94,11 +94,11 @@ public class MainController : MonoBehaviour {
 		if (_playerController.isAlive) {
 			distance += scrollSpeed / 60;
 			scrollSpeed += 0.002f;
-            _playerController.energy -= 0.02f;
+            PlayerController.energy -= 0.02f;
 
-			EnergySlider.value = _playerController.energy / 100;
+			EnergySlider.value = PlayerController.energy / 100;
         
-            if (_playerController.energy < 20 || _playerController.energy > 80)
+            if (PlayerController.energy < 20 || PlayerController.energy > 80)
             {
                 EnergyFill.GetComponent<Image> ().color = Color.red;
             } else
