@@ -61,14 +61,17 @@ public class MainController : MonoBehaviour {
 			Vector2 mousePos2D = new Vector2 (mousePos.x , mousePos.y);
 			RaycastHit2D hit = Physics2D.Raycast (mousePos2D , Vector2.zero);
 
+			bool hitPlayer = true;
 			if (hit.collider != null) {
 				if (hit.collider.gameObject.name == "Pause") {
 					PauseGame();
-				}
-				if (hit.collider.gameObject.name == "Continue") {
+					hitPlayer = false;
+				} else if (hit.collider.gameObject.name == "Continue") {
 					ContinueGame();
+					hitPlayer = false;
 				}
-			} else if (_playerController.isAlive && !_playerController.jumping) {
+			}
+			if (hitPlayer && _playerController.isAlive && !_playerController.jumping) {
 				if (_player.GetComponent<Rigidbody2D> ().IsSleeping()) {
 					return;
 				}
