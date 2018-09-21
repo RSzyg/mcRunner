@@ -14,6 +14,8 @@ public class MainController : MonoBehaviour {
 	public GameObject FirstFloor;
 	public GameObject SecondFloor;
 
+    private bool mute;
+    private float musicVolume;
 	private float width;
 	private GameObject _player;
 	private GameObject _firstFloor;
@@ -22,7 +24,19 @@ public class MainController : MonoBehaviour {
 	
 	void Start()
 	{
-		scrollSpeed = 5.0f;
+        mute = PlayerPrefs.GetInt("mute") == 1 ? true : false;
+        musicVolume = PlayerPrefs.GetFloat("musicVolume");
+        if (mute)
+        {
+            GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().volume = musicVolume * 100;
+        }
+        else
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+
+        scrollSpeed = 5.0f;
 		gameRunning = true;
 		_firstFloor = FirstFloor;
 		_secondFloor = SecondFloor;
@@ -109,6 +123,7 @@ public class MainController : MonoBehaviour {
 			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 		}
 		else {
+            GetComponent<AudioSource>().Stop();
 			GameOverUI.SetActive(true);
 			gameRunning = false;
 		}
@@ -118,10 +133,12 @@ public class MainController : MonoBehaviour {
     {
 		_player.GetComponent<Rigidbody2D> ().Sleep();
         gameRunning = false;
+        GetComponent<AudioSource>().Pause();
     }
 
 	void ContinueGame() {
 		_player.GetComponent<Rigidbody2D> ().WakeUp();
 		gameRunning = true;
+        GetComponent<AudioSource>().Play();
 	}
 }
