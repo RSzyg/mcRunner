@@ -15,41 +15,17 @@ public class MainController : MonoBehaviour {
     public Text DisplayEnergy;
 
 	private float width;
-	private Vector3 floorStartPos;
 	private GameObject FirstFloor;
 	private GameObject SecondFloor;
-	private GameObject player;
+	private GameObject _player;
+	private PlayerController _playerController;
 	
 	void Start()
 	{
-		PauseButton.onClick.AddListener(PauseGame);
-		StartGame();
-	}
-
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			Vector2 mousePos2D = new Vector2 (mousePos.x , mousePos.y);
-			RaycastHit2D hit = Physics2D.Raycast (mousePos2D , Vector2.zero);
-			if (hit.collider != null) {
-				Debug.Log(hit.collider.gameObject.name);
-			} else if (player.GetComponent<PlayerController> ().isAlive && !player.GetComponent<PlayerController> ().jumping) {
-				player.GetComponent<PlayerController> ().jumping = true;
-				player.GetComponent<PlayerController> ().rb.velocity = new Vector2(player.GetComponent<PlayerController> ().rb.velocity.x, 12.0f);
-			}
-		}
-		if (gameRunning) {
-			Game();
-		}
-	}
-
-	void StartGame() {
 		scrollSpeed = 5.0f;
 
 		gameRunning = true;
 
-		floorStartPos = Floor[0].transform.position;
 		width = Floor[0].transform.localScale.x;
 		Debug.Log(width);
 
@@ -58,33 +34,59 @@ public class MainController : MonoBehaviour {
 		float playerPosX = -3;
 		float playerPosY = Floor[0].transform.position.y + Player.transform.localScale.y / 2;
 		float playerPosZ = 0;
-		player = Instantiate(
+		_player = Instantiate(
 			Player,
 			new Vector3(playerPosX, playerPosY, playerPosZ),
 			Quaternion.identity
 		);
+		_playerController = _player.GetComponent<PlayerController> ();
 
 		int rndNum = Random.Range(0, 3);
-		SecondFloor = Instantiate(Floor[rndNum], floorStartPos, Quaternion.identity);
+		SecondFloor = Instantiate(Floor[rndNum], Floor[0].transform.position, Quaternion.identity);
+	}
+
+	// Update is called once per frame
+	void Update () {
+		if (Input.GetMouseButtonDown(0)) {
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			Vector2 mousePos2D = new Vector2 (mousePos.x , mousePos.y);
+			RaycastHit2D hit = Physics2D.Raycast (mousePos2D , Vector2.zero);
+
+			if (hit.collider != null) {
+				if (hit.collider.gameObject.name == "Pause") {
+					PauseGame();
+				}
+			} else if (_playerController.isAlive && !_playerController.jumping) {
+				_playerController.jumping = true;
+				_playerController.rb.velocity = new Vector2(_playerController.rb.velocity.x, 12.0f);
+			}
+		}
+		if (gameRunning) {
+			Game();
+		}
 	}
 
 	void Game() {
-		if (player.GetComponent<PlayerController> ().isAlive) {
+		if (_playerController.isAlive) {
 			scrollSpeed += 0.002f;
-            player.GetComponent<PlayerController>().energy -= 0.02f;
+            _playerController.energy -= 0.02f;
         
-            if (player.GetComponent<PlayerController>().energy < 20)
+            if (_playerController.energy < 20)
             {
-                DisplayEnergy.text = "<color=red>" + (int)player.GetComponent<PlayerController>().energy + "</color>";
+                DisplayEnergy.text = "<color=red>" + (int)_playerController.energy + "</color>";
             } else
             {
-                DisplayEnergy.text = "<color=white>" + (int)player.GetComponent<PlayerController>().energy + "</color>";
+                DisplayEnergy.text = "<color=white>" + (int)_playerController.energy + "</color>";
             }
 
             if (FirstFloor.transform.position.x <= -width * 3 / 4) {
 				Destroy(FirstFloor);
 				int rndNum = Random.Range(0, 3);
-				FirstFloor = Instantiate(Floor[rndNum], SecondFloor.transform.position + Vector3.right * width, Quaternion.identity);
+				FirstFloor = Instantiate(
+					Floor[rndNum],
+					SecondFloor.transform.position + Vector3.right * width,
+					Quaternion.identity
+				);
 
 				AddObject(FirstFloor);
 			}
@@ -92,7 +94,11 @@ public class MainController : MonoBehaviour {
 			if (SecondFloor.transform.position.x <= -width * 3 / 4) {
 				Destroy(SecondFloor);
 				int rndNum = Random.Range(0, 3);
-				SecondFloor = Instantiate(Floor[rndNum], FirstFloor.transform.position + Vector3.right * width, Quaternion.identity);
+				SecondFloor = Instantiate(
+					Floor[rndNum],
+					FirstFloor.transform.position + Vector3.right * width,
+					Quaternion.identity
+				);
 
 				AddObject(SecondFloor);
 			}
