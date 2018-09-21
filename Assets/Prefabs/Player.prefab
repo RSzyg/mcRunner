@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef518a455131964a8f14a3d92a5c161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAlive: 0
   energy: 0
-  jumping: 0
-  energyDisplay: {fileID: 0}
   rb: {fileID: 50894534953603816}
+  jumping: 0
 --- !u!212 &212441657213685444
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -137,7 +137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 77f8cc0208df0084483d42572a75799a, type: 3}
   m_Color: {r: 0.9882353, g: 0.9882353, b: 0.9882353, a: 1}
   m_FlipX: 0
