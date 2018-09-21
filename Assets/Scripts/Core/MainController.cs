@@ -6,17 +6,18 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour {
 	public bool gameRunning = false;
 	public float scrollSpeed = 3f;
-	public float timeInterval = 0.016f;
 	public GameObject Player;
 	public GameObject GameOverUI;
 	public GameObject[] Floor = new GameObject[3];
     public Text DisplayEnergy;
+	public Text DisplayDistance;
 	public GameObject FirstFloor;
 	public GameObject SecondFloor;
 
     private bool mute;
     private float musicVolume;
 	private float width;
+	private float distance;
 	private GameObject _player;
 	private GameObject _firstFloor;
 	private GameObject _secondFloor;
@@ -24,6 +25,7 @@ public class MainController : MonoBehaviour {
 	
 	void Start()
 	{
+		distance = 0.0f;
         mute = PlayerPrefs.GetInt("mute") == 1 ? true : false;
         musicVolume = PlayerPrefs.GetFloat("musicVolume");
         if (mute)
@@ -86,6 +88,7 @@ public class MainController : MonoBehaviour {
 
 	void Game() {
 		if (_playerController.isAlive) {
+			distance += scrollSpeed / 60;
 			scrollSpeed += 0.002f;
             _playerController.energy -= 0.02f;
         
@@ -96,6 +99,8 @@ public class MainController : MonoBehaviour {
             {
                 DisplayEnergy.text = "<color=white>" + (int)_playerController.energy + "</color>";
             }
+
+			DisplayDistance.text = "" + (int)distance;
 
             if (_firstFloor.transform.position.x <= -width * 3 / 4) {
 				if (_firstFloor != null) {
@@ -122,8 +127,8 @@ public class MainController : MonoBehaviour {
 				);
 				Debug.Log(_secondFloor);
 			}
-			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
-			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
+			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
+			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
 		}
 		else {
             GetComponent<AudioSource>().Stop();
