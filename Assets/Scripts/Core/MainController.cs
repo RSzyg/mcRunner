@@ -75,7 +75,7 @@ public class MainController : MonoBehaviour {
 			scrollSpeed += 0.002f;
             _playerController.energy -= 0.02f;
         
-            if (_playerController.energy < 20)
+            if (_playerController.energy < 20 || _playerController.energy > 80)
             {
                 DisplayEnergy.text = "<color=red>" + (int)_playerController.energy + "</color>";
             } else

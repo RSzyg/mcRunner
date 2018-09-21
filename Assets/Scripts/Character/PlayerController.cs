@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void DeadthJudge() {
-		if (energy <= 0) {
+		if (energy <= 0 || energy > 100) {
 			Debug.Log("dead");
 			isAlive = false;
 		}
