@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour {
 
     public void StopJumping() {
 		jumping = false;
+		GetComponent<Animator> ().Play("Running");
 	}
 
 	public void EnergyController(float val) {

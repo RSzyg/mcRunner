@@ -82,6 +82,7 @@ public class MainController : MonoBehaviour {
 				}
 				_playerController.jumping = true;
 				_playerController.rb.velocity = new Vector2(_playerController.rb.velocity.x, 12.0f);
+				_player.GetComponent<Animator> ().Play("Jumping");
 			}
 		}
 		if (gameRunning) {
@@ -136,6 +137,7 @@ public class MainController : MonoBehaviour {
 			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
 		}
 		else {
+			_player.GetComponent<Animator> ().Play("Jumping");
             GetComponent<AudioSource>().Stop();
 			GameOverUI.SetActive(true);
 			gameRunning = false;
