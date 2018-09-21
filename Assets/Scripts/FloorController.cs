@@ -9,31 +9,37 @@ public class FloorController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		int type = Random.Range(0, 2);
-		int rndNum = 0;
-		GameObject tamplate = Obstacle[0];
-		switch (type)
-		{
-			case 0:
-				rndNum = Random.Range(0, Obstacle.Length);
-				tamplate = Obstacle[rndNum];
-				break;
-			case 1:
-				rndNum = Random.Range(0, Food.Length);
-				tamplate = Food[rndNum];
-				break;
-			default:
-				break;
-		}
-		GameObject obj = Instantiate(tamplate);
+		float posX = 0;
 
-		Debug.Log(this.transform.position.x);
-		Debug.Log(this.transform.localScale.x);
-		Debug.Log(obj.transform.localScale.y);
-		obj.transform.localPosition = new Vector3(
-			Random.Range(this.transform.position.x - 12, this.transform.position.x + 12),
-			this.transform.position.y + obj.transform.localScale.y / 2,
-			0
-		);
+		// for (int i = 0; i < 2; i++) {
+			int type = Random.Range(0, 2);
+			int rndNum = 0;
+			GameObject tamplate = Obstacle[0];
+			switch (type)
+			{
+				case 0:
+					rndNum = Random.Range(0, Obstacle.Length);
+					tamplate = Obstacle[rndNum];
+					break;
+				case 1:
+					rndNum = Random.Range(0, Food.Length);
+					tamplate = Food[rndNum];
+					break;
+				default:
+					break;
+			}
+			GameObject obj = Instantiate(tamplate);
+
+			obj.transform.parent = transform;
+
+			posX = Random.Range(-12 * obj.transform.localScale.x, 12 * obj.transform.localScale.x);
+
+			obj.transform.localPosition = new Vector3(posX, obj.transform.localScale.y / 2, 0);
+		// }
+	}
+
+	private void OnBecameInvisible()
+	{
+		Destroy(gameObject);
 	}
 }

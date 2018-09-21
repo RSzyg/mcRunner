@@ -10,13 +10,11 @@ public class MainController : MonoBehaviour {
 	public GameObject PauseUI;
 	public GameObject Player;
 	public GameObject[] Floor = new GameObject[3];
-	public GameObject[] Obstacle = new GameObject[3];
-	public GameObject[] Food = new GameObject[3];
     public Text DisplayEnergy;
+	public GameObject FirstFloor;
+	public GameObject SecondFloor;
 
 	private float width;
-	private GameObject FirstFloor;
-	private GameObject SecondFloor;
 	private GameObject _player;
 	private PlayerController _playerController;
 	
@@ -30,9 +28,6 @@ public class MainController : MonoBehaviour {
 		gameRunning = true;
 
 		width = Floor[0].transform.localScale.x;
-		Debug.Log(width);
-
-		FirstFloor = Instantiate(Floor[0], new Vector3(0, -4, 0), Quaternion.identity);
 
 		float playerPosX = -3;
 		float playerPosY = Floor[0].transform.position.y + Player.transform.localScale.y / 2;
@@ -43,9 +38,6 @@ public class MainController : MonoBehaviour {
 			Quaternion.identity
 		);
 		_playerController = _player.GetComponent<PlayerController> ();
-
-		int rndNum = Random.Range(0, 3);
-		SecondFloor = Instantiate(Floor[rndNum], Floor[0].transform.position, Quaternion.identity);
 	}
 
 	// Update is called once per frame
