@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FloorController : MonoBehaviour {
-	
+
 	public GameObject[] Obstacle;
 	public GameObject[] Food;
 

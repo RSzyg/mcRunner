@@ -16,6 +16,8 @@ public class MainController : MonoBehaviour {
 
 	private float width;
 	private GameObject _player;
+	private GameObject _firstFloor;
+	private GameObject _secondFloor;
 	private PlayerController _playerController;
 	
 	private void Awake() {
@@ -24,8 +26,9 @@ public class MainController : MonoBehaviour {
 	void Start()
 	{
 		scrollSpeed = 5.0f;
-
 		gameRunning = true;
+		_firstFloor = FirstFloor;
+		_secondFloor = SecondFloor;
 
 		width = Floor[0].transform.localScale.x;
 
@@ -80,27 +83,27 @@ public class MainController : MonoBehaviour {
                 DisplayEnergy.text = "<color=white>" + (int)_playerController.energy + "</color>";
             }
 
-            if (FirstFloor.transform.position.x <= -width * 3 / 4) {
-				Destroy(FirstFloor);
+            if (_firstFloor.transform.position.x <= -width * 3 / 4) {
+				Destroy(_firstFloor);
 				int rndNum = Random.Range(0, 3);
-				FirstFloor = Instantiate(
+				_firstFloor = Instantiate(
 					Floor[rndNum],
-					SecondFloor.transform.position + Vector3.right * width,
+					_secondFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
 			}
 
-			if (SecondFloor.transform.position.x <= -width * 3 / 4) {
-				Destroy(SecondFloor);
+			if (_secondFloor.transform.position.x <= -width * 3 / 4) {
+				Destroy(_secondFloor);
 				int rndNum = Random.Range(0, 3);
-				SecondFloor = Instantiate(
+				_secondFloor = Instantiate(
 					Floor[rndNum],
-					FirstFloor.transform.position + Vector3.right * width,
+					_firstFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
 			}
-			FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
-			SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
+			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
+			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 		}
 	}
 

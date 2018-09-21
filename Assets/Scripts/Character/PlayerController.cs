@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		isAlive = true;
 		energy = 60.0f;
-		jumping = true;
+		jumping = false;
 	}
 	
 	// Update is called once per frame
