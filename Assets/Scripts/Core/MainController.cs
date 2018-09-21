@@ -7,8 +7,8 @@ public class MainController : MonoBehaviour {
 	public bool gameRunning = false;
 	public float scrollSpeed = 3f;
 	public float timeInterval = 0.016f;
-	public GameObject PauseUI;
 	public GameObject Player;
+	public GameObject GameOverUI;
 	public GameObject[] Floor = new GameObject[3];
     public Text DisplayEnergy;
 	public GameObject FirstFloor;
@@ -20,9 +20,6 @@ public class MainController : MonoBehaviour {
 	private GameObject _secondFloor;
 	private PlayerController _playerController;
 	
-	private void Awake() {
-		PauseUI.SetActive(false);
-	}
 	void Start()
 	{
 		scrollSpeed = 5.0f;
@@ -111,18 +108,20 @@ public class MainController : MonoBehaviour {
 			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 		}
+		else {
+			GameOverUI.SetActive(true);
+			gameRunning = false;
+		}
 	}
 
     void PauseGame()
     {
 		_player.GetComponent<Rigidbody2D> ().Sleep();
-		PauseUI.SetActive(true);
         gameRunning = false;
     }
 
 	void ContinueGame() {
 		_player.GetComponent<Rigidbody2D> ().WakeUp();
-		PauseUI.SetActive(false);
 		gameRunning = true;
 	}
 }
