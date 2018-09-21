@@ -87,8 +87,6 @@ public class MainController : MonoBehaviour {
 					SecondFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
-
-				AddObject(FirstFloor);
 			}
 
 			if (SecondFloor.transform.position.x <= -width * 3 / 4) {
@@ -99,8 +97,6 @@ public class MainController : MonoBehaviour {
 					FirstFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
-
-				AddObject(SecondFloor);
 			}
 			FirstFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
 			SecondFloor.transform.Translate(Vector3.left * scrollSpeed * timeInterval);
@@ -111,33 +107,4 @@ public class MainController : MonoBehaviour {
     {
         gameRunning = false;
     }
-
-	void AddObject(GameObject parentObj) {
-		int type = Random.Range(0, 2);
-		int rndNum = 0;
-		GameObject tamplate = Obstacle[0];
-		switch (type)
-		{
-			case 0:
-				rndNum = Random.Range(0, Obstacle.Length);
-				tamplate = Obstacle[rndNum];
-				break;
-			case 1:
-				rndNum = Random.Range(0, Food.Length);
-				tamplate = Food[rndNum];
-				break;
-			default:
-				break;
-		}
-		GameObject obj = Instantiate(tamplate);
-
-		obj.transform.parent = parentObj.transform;
-
-		float initPosX = -width / 2 + 0.5f;
-		float posX =  Random.Range(initPosX, initPosX + width * 3 / 4) * obj.transform.localScale.x;
-		float posY = obj.transform.localScale.y / 2;
-		float posZ = 0;
-
-		obj.transform.localPosition = new Vector3(posX, posY, posZ);
-	}
 }

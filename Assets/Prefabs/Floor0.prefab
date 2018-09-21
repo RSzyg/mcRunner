@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4387561019505828}
   - component: {fileID: 212164773364426972}
   - component: {fileID: 61075289751851586}
+  - component: {fileID: 114408380997653370}
   m_Layer: 0
   m_Name: Floor0
   m_TagString: Floor
@@ -66,6 +67,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114408380997653370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958210645273458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b86ee4ba756c4141b5be1f26d448f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Obstacle:
+  - {fileID: 1372695808710640, guid: cfbac0e01b991634bac63e110bb3d9f8, type: 2}
+  - {fileID: 1232873842224730, guid: abe0b43b638a1f648bacfcd69a141407, type: 2}
+  - {fileID: 1144035784212154, guid: 515e087db9765824185d66224581b1c1, type: 2}
+  Food:
+  - {fileID: 1449758776762528, guid: 8c23a7807635aa544a8b676ee45421ea, type: 2}
+  - {fileID: 1762198194486584, guid: 93984000fdf46d345bd93757c2c8089b, type: 2}
+  - {fileID: 1255078374927226, guid: 0c47ca18b4d01e94c8bba59cff726008, type: 2}
 --- !u!212 &212164773364426972
 SpriteRenderer:
   m_ObjectHideFlags: 1
