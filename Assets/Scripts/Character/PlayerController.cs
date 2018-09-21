@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
 
         if (other.gameObject.tag == "BreakableObstacle")
         {
-            Debug.Log("IsWorking");
+            GetComponent<AudioSource>().Play();
             EnergyController(-10.0f);
             Destroy(other.gameObject);
         }

@@ -19,6 +19,7 @@ public class OptionmenuController : MonoBehaviour {
         OnButton.onClick.AddListener(Turnon);
         OffButton.onClick.AddListener(Turnoff);
         OnButton.GetComponent<Image>().color = Color.yellow;
+        musicSlider.value = 0.5f;
     }
 
     private void ValueChangeCheck()
