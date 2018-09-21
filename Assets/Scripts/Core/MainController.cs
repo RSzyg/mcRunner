@@ -9,7 +9,9 @@ public class MainController : MonoBehaviour {
 	public GameObject Player;
 	public GameObject GameOverUI;
 	public GameObject[] Floor = new GameObject[3];
-    public Text DisplayEnergy;
+	public GameObject EnergyBar;
+    public Slider EnergySlider;
+    public GameObject EnergyFill;
 	public Text DisplayDistance;
 	public GameObject FirstFloor;
 	public GameObject SecondFloor;
@@ -25,6 +27,7 @@ public class MainController : MonoBehaviour {
 	
 	void Start()
 	{
+		EnergyBar.SetActive(true);
 		distance = 0.0f;
         mute = PlayerPrefs.GetInt("mute") == 1 ? true : false;
         musicVolume = PlayerPrefs.GetFloat("musicVolume");
@@ -91,13 +94,15 @@ public class MainController : MonoBehaviour {
 			distance += scrollSpeed / 60;
 			scrollSpeed += 0.002f;
             _playerController.energy -= 0.02f;
+
+			EnergySlider.value = _playerController.energy / 100;
         
             if (_playerController.energy < 20 || _playerController.energy > 80)
             {
-                DisplayEnergy.text = "<color=red>" + (int)_playerController.energy + "</color>";
+                EnergyFill.GetComponent<Image> ().color = Color.red;
             } else
             {
-                DisplayEnergy.text = "<color=white>" + (int)_playerController.energy + "</color>";
+                EnergyFill.GetComponent<Image> ().color = Color.white;
             }
 
 			DisplayDistance.text = "" + (int)distance;
