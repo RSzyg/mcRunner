@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obstacle:
   - {fileID: 1372695808710640, guid: cfbac0e01b991634bac63e110bb3d9f8, type: 2}
-  - {fileID: 1232873842224730, guid: abe0b43b638a1f648bacfcd69a141407, type: 2}
+  - {fileID: 1815659549011318, guid: e553b3dc05c1240439a5335c4c16fdc5, type: 2}
   - {fileID: 1144035784212154, guid: 515e087db9765824185d66224581b1c1, type: 2}
   Food:
   - {fileID: 1449758776762528, guid: 8c23a7807635aa544a8b676ee45421ea, type: 2}
