@@ -9,6 +9,7 @@ TagManager:
   - BreakableObstacle
   - Food
   - RoadFence
+  - ManholeCover
   layers:
   - Default
   - TransparentFX

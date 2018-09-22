@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 			StopJumping();
 		}
 
-		if (other.gameObject.tag == "PrimaryObstacle" || other.gameObject.tag == "RoadFence") {
+		if (other.gameObject.tag == "RoadFence") {
 			isAlive = false;
 		}
 	}
@@ -49,6 +49,15 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+	private void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.gameObject.tag == "ManholeCover") {
+			rb.isKinematic = true;
+			rb.velocity = new Vector2(2, -5);
+			isAlive = false;
+		}
+	}
+
     public void StopJumping() {
 		jumping = false;
 		GetComponent<Animator> ().Play("Running");
@@ -63,5 +72,10 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log("dead");
 			isAlive = false;
 		}
+	}
+
+	private void OnBecameInvisible()
+	{
+		Destroy(gameObject);
 	}
 }
