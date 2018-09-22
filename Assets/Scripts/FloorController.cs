@@ -15,7 +15,7 @@ public class FloorController : MonoBehaviour {
 		float posX = 0;
 		int objectNum = 1;
 
-		if (range >= 14 && range <= 15) {
+		if (range >= 13 && range <= 15) {
 			objectNum = 3;
 		} else if (range >= 10 && range < 13) {
 			objectNum = 2;
