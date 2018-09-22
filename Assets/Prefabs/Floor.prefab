@@ -55,7 +55,7 @@ MonoBehaviour:
   Obstacle:
   - {fileID: 1065325193894818, guid: 9e7d869381f97ca4790e502bada28989, type: 2}
   - {fileID: 1815659549011318, guid: e553b3dc05c1240439a5335c4c16fdc5, type: 2}
-  - {fileID: 1144035784212154, guid: 515e087db9765824185d66224581b1c1, type: 2}
+  - {fileID: 1045579426365746, guid: 1b3f3547a97a636448ee645cfd3ed248, type: 2}
   Food:
   - {fileID: 1449758776762528, guid: 8c23a7807635aa544a8b676ee45421ea, type: 2}
   - {fileID: 1762198194486584, guid: 93984000fdf46d345bd93757c2c8089b, type: 2}
