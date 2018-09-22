@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 			StopJumping();
 		}
 
-		if (other.gameObject.tag == "PrimaryObstacle") {
+		if (other.gameObject.tag == "PrimaryObstacle" || other.gameObject.tag == "RoadFence") {
 			isAlive = false;
 		}
 	}
