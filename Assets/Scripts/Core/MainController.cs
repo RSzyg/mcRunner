@@ -17,7 +17,6 @@ public class MainController : MonoBehaviour {
 	public GameObject SecondFloor;
 
     private bool mute;
-    private float musicVolume;
 	private float width;
 	private float distance;
 	private GameObject _player;
@@ -30,11 +29,9 @@ public class MainController : MonoBehaviour {
 		EnergyBar.SetActive(true);
 		distance = 0.0f;
         mute = PlayerPrefs.GetInt("mute") == 1 ? true : false;
-        musicVolume = PlayerPrefs.GetFloat("musicVolume");
         if (mute)
         {
             GetComponent<AudioSource>().Play();
-            GetComponent<AudioSource>().volume = musicVolume * 100;
         }
         else
         {

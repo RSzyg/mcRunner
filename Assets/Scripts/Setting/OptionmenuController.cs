@@ -6,28 +6,17 @@ using UnityEngine.UI;
 public class OptionmenuController : MonoBehaviour {
     public Button OnButton;
     public Button OffButton;
-    public Slider musicSlider;
     public bool isPlaying;
-    public float musicVolume;
 
     private void Start()
     {
         isPlaying = true;
-        PlayerPrefs.SetFloat("musicVolume", musicVolume);
         PlayerPrefs.SetInt("mute", isPlaying ? 1 : 0);
-        musicSlider.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
         OnButton.onClick.AddListener(Turnon);
         OffButton.onClick.AddListener(Turnoff);
         OnButton.GetComponent<Image>().color = Color.yellow;
-        musicSlider.value = 0.5f;
     }
-
-    private void ValueChangeCheck()
-    {
-        musicVolume = musicSlider.value;
-        PlayerPrefs.SetFloat("musicVolume", musicVolume);
-    }
-
+    
     private void Turnon()
     {
         isPlaying = true;
