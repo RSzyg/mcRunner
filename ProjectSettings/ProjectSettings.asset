@@ -151,7 +151,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.qkTeam.mcRunner
+    Android: com.QKTeam.mcRunner
     Standalone: com.Company.ProductName
   buildNumber: {}
   AndroidBundleVersionCode: 1
