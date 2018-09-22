@@ -196,14 +196,14 @@ public class MainController : MonoBehaviour {
 		}
 	}
 
-    void PauseGame()
+    public void PauseGame()
     {
 		_player.GetComponent<Rigidbody2D> ().Sleep();
         gameRunning = false;
         GetComponent<AudioSource>().Pause();
     }
 
-	void ContinueGame() {
+	public void ContinueGame() {
 		_player.GetComponent<Rigidbody2D> ().WakeUp();
 		gameRunning = true;
         GetComponent<AudioSource>().Play();
