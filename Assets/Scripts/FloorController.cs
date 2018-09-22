@@ -7,17 +7,29 @@ public class FloorController : MonoBehaviour {
 	public GameObject[] Obstacle;
 	public GameObject[] Food;
 
+	private float range = 15.0f;
+
 	// Use this for initialization
 	void Start () {
+		range -= (MainController.scrollSpeed - MainController.initialSpeed) / 2;
 		float posX = 0;
+		int objectNum = 1;
 
-		// for (int i = 0; i < 2; i++) {
-			int type = Random.Range(0, 6);
+		if (range >= 14 && range <= 15) {
+			objectNum = 3;
+		} else if (range >= 10 && range < 13) {
+			objectNum = 2;
+		} else if (range < 10) {
+			objectNum = 1;
+		}
+
+		for (int i = 0; i < objectNum; i++) {
+			int type = Random.Range(0, 8);
 			int rndNum = 0;
 			GameObject tamplate = Obstacle[0];
 
 			if (PlayerController.energy < 20) {
-				if (type == 0 || type == 2) {
+				if (type % 4 == 0) {
 					rndNum = Random.Range(0, Obstacle.Length);
 					tamplate = Obstacle[rndNum];
 				} else {
@@ -25,7 +37,7 @@ public class FloorController : MonoBehaviour {
 					tamplate = Food[rndNum];
 				}
 			} else {
-				if (type == 0 || type == 2 || type == 4) {
+				if (type % 2 == 0) {
 					rndNum = Random.Range(0, Obstacle.Length);
 					tamplate = Obstacle[rndNum];
 				} else {
@@ -37,10 +49,15 @@ public class FloorController : MonoBehaviour {
 
 			obj.transform.parent = transform;
 
-			posX = Random.Range(-12 * obj.transform.localScale.x, 12 * obj.transform.localScale.x);
+			float start = (-range + i * range * 2 / objectNum) * obj.transform.localScale.x;
+			float end = start + (range * 2 / objectNum - (6 - objectNum) * 2) * obj.transform.localScale.x;
+			if (objectNum == i + 1) {
+				end = range * obj.transform.localScale.x;
+			}
+			posX = Random.Range(start, end);
 
 			obj.transform.localPosition = new Vector3(posX, obj.transform.localScale.y / 2, 0);
-		// }
+		}
 	}
 
 	// private void OnBecameInvisible()
