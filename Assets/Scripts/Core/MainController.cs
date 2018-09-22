@@ -9,7 +9,7 @@ public class MainController : MonoBehaviour {
 	public static float scrollSpeed = 5.0f;
 	public GameObject Player;
 	public GameObject GameOverUI;
-	public GameObject[] Floor = new GameObject[3];
+	public GameObject Floor;
 	public GameObject EnergyBar;
     public Slider EnergySlider;
     public GameObject EnergyFill;
@@ -44,10 +44,10 @@ public class MainController : MonoBehaviour {
 		_firstFloor = FirstFloor;
 		_secondFloor = SecondFloor;
 
-		width = Floor[0].transform.localScale.x;
+		width = Floor.GetComponent<SpriteRenderer> ().size.x;
 
 		float playerPosX = -3;
-		float playerPosY = Floor[0].transform.position.y + Player.transform.localScale.y / 2;
+		float playerPosY = Floor.transform.position.y + Player.transform.localScale.y / 2;
 		float playerPosZ = 0;
 		_player = Instantiate(
 			Player,
@@ -112,9 +112,8 @@ public class MainController : MonoBehaviour {
 				if (_firstFloor != null) {
 					Destroy(_firstFloor);
 				}
-				int rndNum = Random.Range(0, 3);
 				_firstFloor = Instantiate(
-					Floor[rndNum],
+					Floor,
 					_secondFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
@@ -125,9 +124,8 @@ public class MainController : MonoBehaviour {
 				if (_secondFloor != null) {
 					Destroy(_secondFloor);
 				}
-				int rndNum = Random.Range(0, 3);
 				_secondFloor = Instantiate(
-					Floor[rndNum],
+					Floor,
 					_firstFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
