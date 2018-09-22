@@ -132,7 +132,6 @@ public class MainController : MonoBehaviour {
 					_secondFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
-				Debug.Log(_firstFloor);
 			}
 
 			if (_secondFloor.transform.position.x <= -width * 3 / 4) {
@@ -144,7 +143,6 @@ public class MainController : MonoBehaviour {
 					_firstFloor.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
-				Debug.Log(_secondFloor);
 			}
 
 			if (_firstCity.transform.position.x <=  -City.GetComponent<SpriteRenderer> ().size.x * 3 / 4) {
@@ -156,7 +154,6 @@ public class MainController : MonoBehaviour {
 					_secondCity.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
-				Debug.Log(_firstCity);
 			}
 			if (_secondCity.transform.position.x <=  -City.GetComponent<SpriteRenderer> ().size.x * 3 / 4) {
 				if (_secondCity != null) {
@@ -167,7 +164,6 @@ public class MainController : MonoBehaviour {
 					_firstCity.transform.position + Vector3.right * width,
 					Quaternion.identity
 				);
-				Debug.Log(_secondCity);
 			}
 			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
 			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
