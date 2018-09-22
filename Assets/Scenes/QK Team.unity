@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: QK Team Present
+  m_Text: Presented by QK Team
 --- !u!222 &455271369
 CanvasRenderer:
   m_ObjectHideFlags: 0

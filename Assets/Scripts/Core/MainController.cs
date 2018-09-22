@@ -10,6 +10,7 @@ public class MainController : MonoBehaviour {
 	public GameObject Player;
 	public GameObject GameOverUI;
 	public GameObject PauseButton;
+	public GameObject PauseUI;
 	public GameObject Floor;
 	public GameObject City;
 	public GameObject EnergyBar;
@@ -167,8 +168,8 @@ public class MainController : MonoBehaviour {
 			}
 			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
 			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
-			_firstCity.transform.Translate(Vector3.left * 0.1f * Time.deltaTime);
-			_secondCity.transform.Translate(Vector3.left * 0.1f * Time.deltaTime);
+			_firstCity.transform.Translate(Vector3.left * 0.3f * Time.deltaTime);
+			_secondCity.transform.Translate(Vector3.left * 0.3f * Time.deltaTime);
 		}
 		else {
 			GetComponent<AudioSource>().Stop();
@@ -204,6 +205,7 @@ public class MainController : MonoBehaviour {
 
     public void PauseGame()
     {
+		PauseUI.SetActive(true);
 		_player.GetComponent<Rigidbody2D> ().Sleep();
         gameRunning = false;
         GetComponent<AudioSource>().Pause();

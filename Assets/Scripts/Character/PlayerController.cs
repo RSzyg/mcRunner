@@ -75,11 +75,13 @@ public class PlayerController : MonoBehaviour {
 
 	public void DeadthJudge() {
 		if (energy <= 0) {
+			energy = 0;
             Deadstage = "Slim";
 			isAlive = false;
 		}
         if (energy > 100)
         {
+			energy = 100;
             Deadstage = "Fat";
             isAlive = false;
         }

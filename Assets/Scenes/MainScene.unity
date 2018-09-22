@@ -1487,6 +1487,7 @@ MonoBehaviour:
   Player: {fileID: 1056170936468272, guid: 42551fcbfc7408f4899f92e86d178740, type: 2}
   GameOverUI: {fileID: 1057934325}
   PauseButton: {fileID: 785358458}
+  PauseUI: {fileID: 1945331640}
   Floor: {fileID: 1958210645273458, guid: 3fdbf5a703057eb4cb598dcefec1f0e7, type: 2}
   City: {fileID: 1480278812734486, guid: ae0a4c724fa89754f86264ac4a91324a, type: 2}
   EnergyBar: {fileID: 2125928304}
@@ -1853,18 +1854,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 785358461}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1945331640}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &785358461
