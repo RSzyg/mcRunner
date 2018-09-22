@@ -17,7 +17,7 @@ public class StartAnimation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (++TimeCount >= 120) {
+		if (++TimeCount >= 180) {
 			SceneManager.LoadScene(1);
 		}
 	}
