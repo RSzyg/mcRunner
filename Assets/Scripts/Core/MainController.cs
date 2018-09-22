@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class MainController : MonoBehaviour {
 	public bool gameRunning = false;
-	public float scrollSpeed = 3f;
+	public static float initialSpeed = 5.0f;
+	public static float scrollSpeed = 5.0f;
 	public GameObject Player;
 	public GameObject GameOverUI;
 	public GameObject[] Floor = new GameObject[3];
@@ -90,7 +91,9 @@ public class MainController : MonoBehaviour {
 	void Game() {
 		if (_playerController.isAlive) {
 			distance += scrollSpeed / 60;
-			scrollSpeed += 0.002f;
+			if (scrollSpeed <= 17) {
+				scrollSpeed += 0.002f;
+			}
             PlayerController.energy -= 0.02f;
 
 			EnergySlider.value = PlayerController.energy / 100;
