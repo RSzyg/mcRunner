@@ -45,7 +45,9 @@ public class PlayerController : MonoBehaviour {
         {
             GetComponent<AudioSource>().Play();
             EnergyController(-10.0f);
-            Destroy(other.gameObject);
+			Destroy(other.GetComponent<Collider2D> ());
+			other.transform.Translate(Vector3.right * other.transform.localScale.y / 2);
+			other.transform.Rotate(Vector3.back * 90);
         }
     }
 
