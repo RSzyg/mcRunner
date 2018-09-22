@@ -29,7 +29,7 @@ public class MainController : MonoBehaviour {
 	{
 		EnergyBar.SetActive(true);
 		distance = 0.0f;
-        mute = PlayerPrefs.GetInt("mute") == 1 ? true : false;
+        mute = OptionmenuController.isPlaying;
         if (mute)
         {
             GetComponent<AudioSource>().Play();
