@@ -9,6 +9,7 @@ public class MainController : MonoBehaviour {
 	public static float scrollSpeed = 5.0f;
 	public GameObject Player;
 	public GameObject GameOverUI;
+	public GameObject PauseButton;
 	public GameObject Floor;
 	public GameObject City;
 	public GameObject EnergyBar;
@@ -174,24 +175,27 @@ public class MainController : MonoBehaviour {
 			_secondCity.transform.Translate(Vector3.left * 0.1f * Time.deltaTime);
 		}
 		else {
+			GetComponent<AudioSource>().Stop();
+			if (PauseButton) {
+				PauseButton.SetActive(false);
+			}
 			if (_player) {
 				_player.GetComponent<Animator> ().Play("Jumping");
 			}
-			if (++deadthCount > 60) {
-				GetComponent<AudioSource>().Stop();
+			if (++deadthCount > 30) {
 				GameOverUI.SetActive(true);
 				if (_playerController.Deadstage == "Hit")
 				{
 					GameOverTitle.text = "……";
-					GameOverTips.text = "少年！中秋节要加油锻炼哦，你已经连跨栏都跨不过去了";
+					GameOverTips.text = "中秋节要加油锻炼哦，你已经连跨栏都跨不过去了";
 				} else if (_playerController.Deadstage == "Fall")
 				{
 					GameOverTitle.text = "井底见";
-					GameOverTips.text = "中秋节也不要做低头族哦";
+					GameOverTips.text = "中秋节出行要注意安全哦~";
 				} else if (_playerController.Deadstage == "Slim")
 				{
 					GameOverTitle.text = "请充值卡路里";
-					GameOverTips.text = "中秋节也要好好对自己哦";
+					GameOverTips.text = "中秋节也要好好对自己哦~";
 				} else if (_playerController.Deadstage == "Fat")
 				{
 					GameOverTitle.text = "卡路里爆表咯";

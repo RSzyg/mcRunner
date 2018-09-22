@@ -1486,6 +1486,7 @@ MonoBehaviour:
   gameRunning: 0
   Player: {fileID: 1056170936468272, guid: 42551fcbfc7408f4899f92e86d178740, type: 2}
   GameOverUI: {fileID: 1057934325}
+  PauseButton: {fileID: 785358458}
   Floor: {fileID: 1958210645273458, guid: 3fdbf5a703057eb4cb598dcefec1f0e7, type: 2}
   City: {fileID: 1480278812734486, guid: ae0a4c724fa89754f86264ac4a91324a, type: 2}
   EnergyBar: {fileID: 2125928304}
