@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/QK Team.unity
+    guid: 578c0ba61ab212d42bbdd8753e767dde
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: d4d5a6cb06acfd84b878a7ca07057ac2
   - enabled: 1
