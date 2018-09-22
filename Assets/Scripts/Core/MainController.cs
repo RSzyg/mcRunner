@@ -68,7 +68,7 @@ public class MainController : MonoBehaviour {
 
 			bool hitPlayer = true;
 			if (hit.collider != null) {
-				if (hit.collider.gameObject.name == "Pause") {
+				if (hit.collider.gameObject.name == "PauseButton") {
 					PauseGame();
 					hitPlayer = false;
 				} else if (hit.collider.gameObject.name == "Continue") {
