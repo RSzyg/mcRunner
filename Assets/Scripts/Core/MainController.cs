@@ -26,7 +26,7 @@ public class MainController : MonoBehaviour {
 	private GameObject _secondFloor;
 	private PlayerController _playerController;
 	
-	void Start()
+	void Awake()
 	{
 		EnergyBar.SetActive(true);
 		distance = 0.0f;

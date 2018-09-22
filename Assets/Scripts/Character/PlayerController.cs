@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
 	public bool jumping;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		isAlive = true;
 		energy = 60.0f;
 		jumping = false;
