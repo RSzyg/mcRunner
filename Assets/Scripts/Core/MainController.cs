@@ -17,6 +17,8 @@ public class MainController : MonoBehaviour {
 	public Text EnergyDigit;
 	public GameObject FirstFloor;
 	public GameObject SecondFloor;
+    public Text GameOverTitle;
+    public Text GameOverTips;
 
     private bool mute;
 	private float width;
@@ -26,7 +28,7 @@ public class MainController : MonoBehaviour {
 	private GameObject _secondFloor;
 	private PlayerController _playerController;
 	
-	void Start()
+	void Awake()
 	{
 		EnergyBar.SetActive(true);
 		distance = 0.0f;
@@ -141,6 +143,23 @@ public class MainController : MonoBehaviour {
 			_player.GetComponent<Animator> ().Play("Jumping");
             GetComponent<AudioSource>().Stop();
 			GameOverUI.SetActive(true);
+            if (_playerController.Deadstage == "Hit")
+            {
+                GameOverTitle.text = "……";
+                GameOverTips.text = "少年！中秋节要加油锻炼哦，你已经连跨栏都跨不过去了";
+            } else if (_playerController.Deadstage == "Fall")
+            {
+                GameOverTitle.text = "井底见";
+                GameOverTips.text = "中秋节也不要做低头族哦";
+            } else if (_playerController.Deadstage == "Slim")
+            {
+                GameOverTitle.text = "请充值卡路里";
+                GameOverTips.text = "中秋节也要好好对自己哦";
+            } else if (_playerController.Deadstage == "Fat")
+            {
+                GameOverTitle.text = "卡路里爆表咯";
+                GameOverTips.text = "中秋节要记得节制饮食哈";
+            }
 			gameRunning = false;
 		}
 	}
