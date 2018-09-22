@@ -168,8 +168,8 @@ public class MainController : MonoBehaviour {
 			}
 			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
 			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
-			_firstCity.transform.Translate(Vector3.left * 1f * Time.deltaTime);
-			_secondCity.transform.Translate(Vector3.left * 1f * Time.deltaTime);
+			_firstCity.transform.Translate(Vector3.left * 0.1f * Time.deltaTime);
+			_secondCity.transform.Translate(Vector3.left * 0.1f * Time.deltaTime);
 		}
 		else {
 			_player.GetComponent<Animator> ().Play("Jumping");
