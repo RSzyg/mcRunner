@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "ManholeCover") {
 			rb.isKinematic = true;
-			rb.velocity = new Vector2(2, -5);
+			rb.velocity = new Vector2(4, -6);
 			isAlive = false;
             Deadstage = "Fall";
 		}
