@@ -14,6 +14,7 @@ public class MainController : MonoBehaviour {
     public Slider EnergySlider;
     public GameObject EnergyFill;
 	public Text DisplayDistance;
+	public Text EnergyDigit;
 	public GameObject FirstFloor;
 	public GameObject SecondFloor;
 
@@ -107,6 +108,8 @@ public class MainController : MonoBehaviour {
             }
 
 			DisplayDistance.text = "" + (int)distance;
+
+			EnergyDigit.text = "卡路里：" + (int)PlayerController.energy + "%";
 
             if (_firstFloor.transform.position.x <= -width * 3 / 4) {
 				if (_firstFloor != null) {
