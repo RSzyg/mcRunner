@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle:
-  - {fileID: 1034840081464306, guid: 3d99c9eb4a0c7e94bac3bd9ca7c236ef, type: 2}
+  - {fileID: 1065325193894818, guid: 9e7d869381f97ca4790e502bada28989, type: 2}
   - {fileID: 1815659549011318, guid: e553b3dc05c1240439a5335c4c16fdc5, type: 2}
   - {fileID: 1144035784212154, guid: 515e087db9765824185d66224581b1c1, type: 2}
   Food:
