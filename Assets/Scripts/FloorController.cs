@@ -62,6 +62,9 @@ public class FloorController : MonoBehaviour {
 			if (obj.gameObject.tag == "BreakableObstacle" || obj.gameObject.tag == "Food") {
 				posY = obj.transform.localScale.y / 3;
 			}
+			if (obj.gameObject.tag == "ManholeCover") {
+				posY = obj.transform.localScale.y / 6;
+			}
 			obj.transform.localPosition = new Vector3(posX, posY, 0);
 		}
 	}
