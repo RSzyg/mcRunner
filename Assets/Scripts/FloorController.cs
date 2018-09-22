@@ -55,8 +55,11 @@ public class FloorController : MonoBehaviour {
 				end = range * obj.transform.localScale.x;
 			}
 			posX = Random.Range(start, end);
-
-			obj.transform.localPosition = new Vector3(posX, obj.transform.localScale.y / 2, 0);
+			float posY = obj.transform.localScale.y / 2;
+			if (obj.gameObject.tag == "RoadFence") {
+				posY = obj.transform.localScale.y / 5;
+			}
+			obj.transform.localPosition = new Vector3(posX, posY, 0);
 		}
 	}
 

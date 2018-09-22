@@ -160,9 +160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnButton: {fileID: 1023289068}
   OffButton: {fileID: 1594917953}
-  musicSlider: {fileID: 0}
-  isPlaying: 0
-  musicVolume: 0
 --- !u!1 &295089787
 GameObject:
   m_ObjectHideFlags: 0
