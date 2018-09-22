@@ -8,9 +8,11 @@ public class PlayerController : MonoBehaviour {
 	public static float energy;
 	public Rigidbody2D rb;
 	public bool jumping;
+    public string Deadstage;
 
 	// Use this for initialization
 	void Awake () {
+        Deadstage = "";
 		isAlive = true;
 		energy = 60.0f;
 		jumping = false;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (other.gameObject.tag == "RoadFence") {
 			isAlive = false;
+            Deadstage = "Hit";
 		}
 	}
 
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour {
 			rb.isKinematic = true;
 			rb.velocity = new Vector2(2, -5);
 			isAlive = false;
+            Deadstage = "Fall";
 		}
 	}
 
@@ -70,10 +74,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void DeadthJudge() {
-		if (energy <= 0 || energy > 100) {
-			Debug.Log("dead");
+		if (energy <= 0) {
+            Deadstage = "Slim";
 			isAlive = false;
 		}
+        if (energy > 100)
+        {
+            Deadstage = "Fat";
+            isAlive = false;
+        }
 	}
 
 	private void OnBecameInvisible()
