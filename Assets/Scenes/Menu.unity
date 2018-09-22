@@ -324,7 +324,6 @@ GameObject:
   - component: {fileID: 497303790}
   - component: {fileID: 497303789}
   - component: {fileID: 497303788}
-  - component: {fileID: 497303792}
   m_Layer: 5
   m_Name: OptionButton
   m_TagString: Untagged
@@ -466,19 +465,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 497303786}
   m_CullTransparentMesh: 0
---- !u!114 &497303792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 497303786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aaf70cd7b2de243b76334808c4ee70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  music: {fileID: 0}
-  musicVolume: 0
 --- !u!1 &531616308
 GameObject:
   m_ObjectHideFlags: 0
