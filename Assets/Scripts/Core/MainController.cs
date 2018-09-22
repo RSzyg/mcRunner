@@ -23,6 +23,7 @@ public class MainController : MonoBehaviour {
     public Text GameOverTitle;
     public Text GameOverTips;
 
+	private int deadthCount;
     private bool mute;
 	private float width;
 	private float distance;
@@ -35,6 +36,7 @@ public class MainController : MonoBehaviour {
 	
 	void Awake()
 	{
+		deadthCount = 0;
 		EnergyBar.SetActive(true);
 		distance = 0.0f;
         mute = OptionmenuController.isPlaying;
@@ -172,27 +174,31 @@ public class MainController : MonoBehaviour {
 			_secondCity.transform.Translate(Vector3.left * 0.1f * Time.deltaTime);
 		}
 		else {
-			_player.GetComponent<Animator> ().Play("Jumping");
-            GetComponent<AudioSource>().Stop();
-			GameOverUI.SetActive(true);
-            if (_playerController.Deadstage == "Hit")
-            {
-                GameOverTitle.text = "……";
-                GameOverTips.text = "少年！中秋节要加油锻炼哦，你已经连跨栏都跨不过去了";
-            } else if (_playerController.Deadstage == "Fall")
-            {
-                GameOverTitle.text = "井底见";
-                GameOverTips.text = "中秋节也不要做低头族哦";
-            } else if (_playerController.Deadstage == "Slim")
-            {
-                GameOverTitle.text = "请充值卡路里";
-                GameOverTips.text = "中秋节也要好好对自己哦";
-            } else if (_playerController.Deadstage == "Fat")
-            {
-                GameOverTitle.text = "卡路里爆表咯";
-                GameOverTips.text = "中秋节要记得节制饮食哈";
-            }
-			gameRunning = false;
+			if (_player) {
+				_player.GetComponent<Animator> ().Play("Jumping");
+			}
+			if (++deadthCount > 60) {
+				GetComponent<AudioSource>().Stop();
+				GameOverUI.SetActive(true);
+				if (_playerController.Deadstage == "Hit")
+				{
+					GameOverTitle.text = "……";
+					GameOverTips.text = "少年！中秋节要加油锻炼哦，你已经连跨栏都跨不过去了";
+				} else if (_playerController.Deadstage == "Fall")
+				{
+					GameOverTitle.text = "井底见";
+					GameOverTips.text = "中秋节也不要做低头族哦";
+				} else if (_playerController.Deadstage == "Slim")
+				{
+					GameOverTitle.text = "请充值卡路里";
+					GameOverTips.text = "中秋节也要好好对自己哦";
+				} else if (_playerController.Deadstage == "Fat")
+				{
+					GameOverTitle.text = "卡路里爆表咯";
+					GameOverTips.text = "中秋节要记得节制饮食哈";
+				}
+				gameRunning = false;
+			}
 		}
 	}
 
