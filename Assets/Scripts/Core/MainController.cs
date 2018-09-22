@@ -10,6 +10,7 @@ public class MainController : MonoBehaviour {
 	public GameObject Player;
 	public GameObject GameOverUI;
 	public GameObject Floor;
+	public GameObject City;
 	public GameObject EnergyBar;
     public Slider EnergySlider;
     public GameObject EnergyFill;
@@ -17,6 +18,8 @@ public class MainController : MonoBehaviour {
 	public Text EnergyDigit;
 	public GameObject FirstFloor;
 	public GameObject SecondFloor;
+	public GameObject FirstCity;
+	public GameObject SecondCity;
     public Text GameOverTitle;
     public Text GameOverTips;
 
@@ -26,6 +29,8 @@ public class MainController : MonoBehaviour {
 	private GameObject _player;
 	private GameObject _firstFloor;
 	private GameObject _secondFloor;
+	private GameObject _firstCity;
+	private GameObject _secondCity;
 	private PlayerController _playerController;
 	
 	void Awake()
@@ -46,6 +51,8 @@ public class MainController : MonoBehaviour {
 		gameRunning = true;
 		_firstFloor = FirstFloor;
 		_secondFloor = SecondFloor;
+		_firstCity = FirstCity;
+		_secondCity = SecondCity;
 
 		width = Floor.GetComponent<SpriteRenderer> ().size.x;
 
@@ -136,8 +143,33 @@ public class MainController : MonoBehaviour {
 				);
 				Debug.Log(_secondFloor);
 			}
+
+			if (_firstCity.transform.position.x <=  -City.GetComponent<SpriteRenderer> ().size.x * 3 / 4) {
+				if (_firstCity != null) {
+					Destroy(_firstCity);
+				}
+				_firstCity = Instantiate(
+					City,
+					_secondCity.transform.position + Vector3.right * width,
+					Quaternion.identity
+				);
+				Debug.Log(_firstCity);
+			}
+			if (_secondCity.transform.position.x <=  -City.GetComponent<SpriteRenderer> ().size.x * 3 / 4) {
+				if (_secondCity != null) {
+					Destroy(_secondCity);
+				}
+				_secondCity = Instantiate(
+					City,
+					_firstCity.transform.position + Vector3.right * width,
+					Quaternion.identity
+				);
+				Debug.Log(_secondCity);
+			}
 			_firstFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
 			_secondFloor.transform.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
+			_firstCity.transform.Translate(Vector3.left * 1f * Time.deltaTime);
+			_secondCity.transform.Translate(Vector3.left * 1f * Time.deltaTime);
 		}
 		else {
 			_player.GetComponent<Animator> ().Play("Jumping");
